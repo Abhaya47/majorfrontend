@@ -1,13 +1,12 @@
+//registration page
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyLogin());
+void main() => runApp(const MyRegistration());
 
-class MyLogin extends StatelessWidget {
+class MyRegistration extends StatelessWidget {
+  const MyRegistration({Key? key}) : super(key: key);
 
-
-  const MyLogin({Key? key}) : super(key: key);
-
-  static const String _title = 'Login Page';
+  static const String _title = 'Registration Page';
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         child: ListView(
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextField(
                 controller: nameController,
                 decoration: const InputDecoration(
@@ -62,40 +61,28 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                //forgot password screen
-              },
-              child: const Text('Forgot Password',
-                style: TextStyle(color: Colors.grey),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: TextField(
+                obscureText: true,
+                controller: passwordController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Re-enter Password',
+                ),
               ),
             ),
             Container(
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text('Register'),
                   onPressed: () {
                     print(nameController.text);
                     print(passwordController.text);
                   },
                   style: ElevatedButton.styleFrom(primary: Colors.grey),
                 )
-            ),
-            Row(
-              children: <Widget>[
-                const Text('Don\'t\ have an account?'),
-                TextButton(
-                  child: const Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
-                  ),
-                  onPressed: () {
-                    //signup screen
-                  },
-                )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
         ));
