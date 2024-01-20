@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'Btm1.dart';
-import 'Btm2.dart';
-import 'Btm3.dart';
+// import 'Btm1.dart';
+// import 'Btm2.dart';
+// import 'Btm3.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({Key? key}) : super(key: key);
@@ -14,9 +14,13 @@ class _MyTabBarState extends State<MyTabBar> {
   int selectedIndex=0;
 
   final widgetOptions=[
-    ChatFragement(),
-    StatusFragment(),
-    CallFragment(),
+    // ChatFragement(),
+    // StatusFragment(),
+    // CallFragment(),
+
+    Home(),
+    Start(),
+    Log()
   ];
 
   void onItemTapped(int index){
@@ -65,6 +69,63 @@ class _MyTabBarState extends State<MyTabBar> {
               Icons.book
           ), label: 'Log')
         ],
+      ),
+    );
+  }
+
+
+}
+
+
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _Home();
+}
+
+class _Home extends State<Home> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Home'),
+      ),
+    );
+  }
+}
+
+class Start extends StatefulWidget {
+  const Start({Key? key}) : super(key: key);
+
+  @override
+  State<Start> createState() => _Start();
+}
+
+class _Start extends State<Start> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Start'),
+      ),
+    );
+  }
+}
+
+class Log extends StatefulWidget {
+  const Log({Key? key}) : super(key: key);
+
+  @override
+  State<Log> createState() => _Log();
+}
+
+class _Log extends State<Log> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Log'),
       ),
     );
   }
