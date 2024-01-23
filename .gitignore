@@ -42,3 +42,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# extra
+pubspec.yaml
+pubsec.lock
+ios/*
+web/*
+.metadata
+README.md
+*.yaml
+android/app/*
+
