@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'Screen/home.dart';
-// import 'package:imlost/model/BottomNav/MyTabBar.dart';
+// import 'package:majorproject/model/BottomNav/MyTabBar.dart';
 //
 //
 // void main() {
@@ -59,8 +59,8 @@
 //
 
 import 'package:flutter/material.dart';
-import 'package:imlost/Screen/first.dart';
-import 'package:imlost/Screen/second.dart';
+import 'package:majorproject/Screen/first.dart';
+import 'package:majorproject/Screen/second.dart';
 
 void main() {
   runApp(const MyApp());
