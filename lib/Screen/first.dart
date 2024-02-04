@@ -57,7 +57,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             ));
       }
       else{
-        print(response.body);
         const snackBar = SnackBar(
           content: Text('Invalid credential'),
         );

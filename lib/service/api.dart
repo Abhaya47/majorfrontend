@@ -52,7 +52,6 @@ class api
         Uri.parse(url),
         headers: headers,
     );
-    print(response.body);
     return (response);
   }
 }
