@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:majorproject/Profile/profile.dart';
+
 // import 'Btm1.dart';
 // import 'Btm2.dart';
 // import 'Btm3.dart';
@@ -56,6 +57,7 @@ class _MyTabBarState extends State<MyTabBar> {
                 },
               icon: Icon(Icons.person))],
 
+
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.more_vert),
@@ -68,6 +70,7 @@ class _MyTabBarState extends State<MyTabBar> {
         fixedColor: Colors.red,
 
         items: const <BottomNavigationBarItem>[
+
           BottomNavigationBarItem(icon: Icon(
             Icons.house,
           ), label: 'Home'),
