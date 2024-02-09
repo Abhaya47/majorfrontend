@@ -57,7 +57,6 @@
 // // }
 //
 //
-
 import 'package:flutter/material.dart';
 import 'package:majorproject/Screen/first.dart';
 import 'package:majorproject/Screen/second.dart';
@@ -99,7 +98,8 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyLogin()),
+                    MaterialPageRoute(builder: (context) => const MyLogin()),
+
                 );
               },
               child: Text('Login'),
@@ -120,3 +120,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+

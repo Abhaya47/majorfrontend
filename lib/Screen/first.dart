@@ -4,11 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../service/login.dart';
 import 'second.dart';
-// <<<<<<< HEAD
-// import '../model/BottomNav/MyTabBar.dart';
-// =======
+
 import '/model/BottomNav/MyTabBar.dart';
-// >>>>>>> d45f4432b7ab921b6716454d73367deb723b7514
+
 import 'package:http/http.dart';
 import '../service/api.dart';
 
@@ -47,24 +45,24 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     if (_formKey.currentState!.validate()) {
       // print(nameController.text);
       // print(passwordController.text);
+/*
       Map data={
         "email": _email,
         "password": _password
       };
       Response response= await api.Post("http://major.dns.army/api/login",jsonEncode(data));
-
       Map responseMap=jsonDecode(response.body);
-      if(response.statusCode==200){
+      if(response.statusCode==200){ */
         Navigator.push(
             context,
             MaterialPageRoute(builder:
                 (context) => const MyTabBar()
             ));
       }
-      else{
+    /*  else{
         const snackBar = SnackBar(
           content: Text('Invalid credential'),
-        );
+        ); */
 
 // Find the ScaffoldMessenger in the widget tree
 // and use it to show a SnackBar.
