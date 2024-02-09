@@ -1,5 +1,6 @@
 //home page
 import 'package:flutter/material.dart';
+import 'package:majorproject/addpage.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({Key? key}) : super(key: key);
@@ -18,6 +19,7 @@ class _MyTabBarState extends State<MyTabBar> {
 
     Home(),
     Start(),
+    Add(),
     Log()
   ];
 
@@ -27,7 +29,7 @@ class _MyTabBarState extends State<MyTabBar> {
     });
   }
 
-  final widgetTitle = {"home", "start", "log"};
+  final widgetTitle = {"home", "start", "add", "log"};
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +46,54 @@ class _MyTabBarState extends State<MyTabBar> {
           textAlign: TextAlign.center,
         ),
         actions: [
-          IconButton(
+          // Person icon with dropdown menu
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              // Handle menu item selection
+              // You can add logic based on the selected value
+              print(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return ["Information", "something"].map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+            icon: Icon(Icons.person),
+          ),
+
+          // Menu icon with dropdown menu
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              // Handle menu item selection
+              // You can add logic based on the selected value
+              print(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return ["Settings", "Logout"].map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+            icon: Icon(Icons.menu),
+          ),
+        ],
+      ),
+
+          /*IconButton(
             onPressed: () {},
             icon: Icon(Icons.person),
           )
         ],
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.more_vert),
+          icon: Icon(Icons.menu),
         ),
-      ),
+      ),*/
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
@@ -65,6 +105,7 @@ class _MyTabBarState extends State<MyTabBar> {
               ),
               label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.start), label: 'Start'),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Log')
         ],
       ),
@@ -103,6 +144,24 @@ class _Start extends State<Start> {
     return Scaffold(
       body: Center(
         child: Text('Start'),
+      ),
+    );
+  }
+}
+
+class Add extends StatefulWidget {
+  const Add({Key? key}) : super(key: key);
+
+  @override
+  State<Add> createState() => _Add();
+}
+
+class _Add extends State<Add> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Add'),
       ),
     );
   }
