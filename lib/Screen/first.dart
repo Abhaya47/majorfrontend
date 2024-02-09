@@ -4,9 +4,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../service/login.dart';
 import 'second.dart';
-import '/model/BottomNav/MyTabBar.dart';
-import 'package:http/http.dart';
 
+import '/model/BottomNav/MyTabBar.dart';
+
+import 'package:http/http.dart';
+import '../service/api.dart';
 
 class MyLogin extends StatelessWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -43,7 +45,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     if (_formKey.currentState!.validate()) {
       // print(nameController.text);
       // print(passwordController.text);
-      /*Response response= await Login.login(_email,_password);
+/*
+      Map data={
+        "email": _email,
+        "password": _password
+      };
+      Response response= await api.Post("http://major.dns.army/api/login",jsonEncode(data));
       Map responseMap=jsonDecode(response.body);
       if(response.statusCode==200){ */
         Navigator.push(
@@ -164,6 +171,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               )
           ),
           Row(
+
+            mainAxisAlignment: MainAxisAlignment.center,
+
             children: <Widget>[
               const Text('Don\'t\ have an account?'),
               TextButton(
@@ -180,7 +190,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 },//signup screen
               ),
             ],
-            mainAxisAlignment: MainAxisAlignment.center,
+
           ),
         ],
       ),

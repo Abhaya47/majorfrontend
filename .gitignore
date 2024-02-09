@@ -45,11 +45,10 @@ app.*.map.json
 
 # extra
 pubspec.yaml
-pubsec.lock
+pubspec.lock
 ios/*
 web/*
 .metadata
 README.md
 *.yaml
 android/app/*
-
