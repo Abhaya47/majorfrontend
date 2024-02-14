@@ -1,6 +1,7 @@
 //home page
 import 'package:flutter/material.dart';
 import 'package:majorproject/addpage.dart';
+// import 'package:majorproject/start.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({Key? key}) : super(key: key);
@@ -125,7 +126,34 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Home'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 100.0,
+              height: 100.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.grey,
+              ),
+            child: Image.asset('food.png',
+            fit: BoxFit.cover,
+            ),
+            ),
+            SizedBox(height: 16.0),
+            Text('Home',
+              style: TextStyle(fontSize: 15.0),
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                // Add your button click logic here
+                print('Button pressed!');
+              },
+              child: Text('Profile'),
+            ),
+          ],
+        )
       ),
     );
   }
@@ -143,7 +171,30 @@ class _Start extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Start'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Start',
+                style: TextStyle(fontSize: 15.0),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Add your button click logic here
+                  print('Button pressed!');
+                },
+                child: Text('Get Diet Recommendation'),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                // Add your button click logic here
+                  print('Button pressed!');
+                 },
+                child: Text('Get Exercise Recommendation'),
+              ),
+            ],
+          ),
       ),
     );
   }
@@ -161,11 +212,27 @@ class _Add extends State<Add> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Add'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddPage()),
+                );
+              },
+              child: Text('Go to Add Page'),
+            ),
+            SizedBox(height: 16.0), // Optional: Add spacing between button and text
+            Text('Add'),
+          ],
+        ),
       ),
     );
   }
 }
+
 
 class Log extends StatefulWidget {
   const Log({Key? key}) : super(key: key);
