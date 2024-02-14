@@ -1,7 +1,7 @@
 //home page
 import 'package:flutter/material.dart';
 import 'package:majorproject/addpage.dart';
-// import 'package:majorproject/start.dart';
+import 'model/BottomNav/log.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({Key? key}) : super(key: key);
@@ -14,13 +14,11 @@ class _MyTabBarState extends State<MyTabBar> {
   int selectedIndex = 0;
 
   final widgetOptions = [
-    // ChatFragment(),
-    // StatusFragment(),
-    // CallFragment(),
+
 
     Home(),
     Start(),
-    Add(),
+    AddPage(),
     Log()
   ];
 
@@ -234,20 +232,3 @@ class _Add extends State<Add> {
 }
 
 
-class Log extends StatefulWidget {
-  const Log({Key? key}) : super(key: key);
-
-  @override
-  State<Log> createState() => _Log();
-}
-
-class _Log extends State<Log> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Log'),
-      ),
-    );
-  }
-}

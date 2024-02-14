@@ -29,6 +29,7 @@ class _AddPageState extends State<AddPage> {
                   labelText: 'Food',
                   hintText: 'Enter your food',
                 ),
+
                 // validator: (value) {
                 //   if (value == null || value.isEmpty) {
                 //     return 'Please enter your food';
