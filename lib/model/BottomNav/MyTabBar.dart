@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+// import 'package:get/get.dart';
+// import 'package:get/get_core/src/get_main.dart';
 import 'package:majorproject/Profile/profile.dart';
+import 'package:majorproject/Screen/second.dart';
+
 
 // import 'Btm1.dart';
 // import 'Btm2.dart';

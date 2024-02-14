@@ -60,6 +60,7 @@
 import 'package:flutter/material.dart';
 import 'package:majorproject/Screen/first.dart';
 import 'package:majorproject/Screen/second.dart';
+import 'package:majorproject/addpage.dart';
 
 void main() {
   runApp(const MyApp());
