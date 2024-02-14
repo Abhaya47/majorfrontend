@@ -51,8 +51,4 @@ web/*
 .metadata
 README.md
 *.yaml
-<<<<<<< HEAD
 android/app/*
-=======
-android/app/*
->>>>>>> d45f4432b7ab921b6716454d73367deb723b7514
