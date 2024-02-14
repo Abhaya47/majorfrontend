@@ -4,9 +4,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../service/login.dart';
 import 'second.dart';
+import 'package:majorproject/addpage.dart';
 
-import '/model/BottomNav/MyTabBar.dart';
-
+// import '/model/BottomNav/MyTabBar.dart';
+import 'package:majorproject/third.dart';
 import 'package:http/http.dart';
 import '../service/api.dart';
 
@@ -38,31 +39,37 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  String _email='';
-  String _password='';
+  String _email = '';
+  String _password = '';
 
-  loginPressed() async{
+  loginPressed() async {
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder:
+            (context) => const MyTabBar()
+        ));
     if (_formKey.currentState!.validate()) {
       // print(nameController.text);
       // print(passwordController.text);
-/*
-      Map data={
+
+      Map data = {
         "email": _email,
         "password": _password
       };
-      Response response= await api.Post("http://major.dns.army/api/login",jsonEncode(data));
-      Map responseMap=jsonDecode(response.body);
-      if(response.statusCode==200){ */
+      Response response = await api.Post(
+          "http://major.dns.army/api/login", jsonEncode(data));
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
         Navigator.push(
             context,
             MaterialPageRoute(builder:
                 (context) => const MyTabBar()
             ));
       }
-    /*  else{
+      else {
         const snackBar = SnackBar(
           content: Text('Invalid credential'),
-        ); */
+        );
 
 // Find the ScaffoldMessenger in the widget tree
 // and use it to show a SnackBar.
@@ -70,7 +77,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       }
     }
   }
-  static const String _title = 'Login Page';
+
   final _formKey = GlobalKey<FormState>();
   bool _obscureText = true;
   bool rememberUser = false;
@@ -92,6 +99,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     }
     return null;
   }
+
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -106,39 +114,39 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             key: _formKey,
             child: Column(
               // padding: const EdgeInsets.all(10),
-              children: [
-                const SizedBox(height: 12),
+                children: [
+                  const SizedBox(height: 12),
 
-                TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
+                  TextFormField(
+                      controller: nameController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
 
-                  labelText: 'Enter email',
-                ),
+                        labelText: 'Enter email',
+                      ),
 
-                validator: _emailValidator,
-                    onChanged: (value){
-                      _email=value;
-                    }
-              ),
-
-                const SizedBox(height: 12),
-
-                TextFormField(
-                  obscureText: true,
-                  controller: passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Enter Password',
+                      validator: _emailValidator,
+                      onChanged: (value) {
+                        _email = value;
+                      }
                   ),
-                  validator: _passwordValidator,
-                    onChanged: (value){
-                      _password=value;
-                    }
-                ),
 
-              ]
+                  const SizedBox(height: 12),
+
+                  TextFormField(
+                      obscureText: true,
+                      controller: passwordController,
+                      decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Password',
+                      ),
+                      validator: _passwordValidator,
+                      onChanged: (value) {
+                        _password = value;
+                      }
+                  ),
+
+                ]
             ),
 
           ),
@@ -156,7 +164,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
                 child: const Text('Login'),
-                onPressed: ()=> loginPressed(),
+                onPressed: () => loginPressed(),
                 // {
                 //   if (_formKey.currentState!.validate()) {
                 //     // print(nameController.text);
@@ -182,12 +190,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 ),
                 onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyRegistration()
-                        )
-                    );
-                },//signup screen
+                  Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => const MyRegistration()
+                      )
+                  );
+                }, //signup screen
               ),
             ],
 
