@@ -9,9 +9,12 @@ class api {
   static Authentication(Map<String, String> headers) async{
     final storage = new FlutterSecureStorage();
     String ?token=await storage.read(key: 'token');
-
-    token = "Bearer "+token!;
+    if(token==null){
+      return headers;
+    }
     if (token != "") {
+      token = "Bearer "+token!;
+
       headers['Authorization'] = token;
     }
     return headers;
