@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'Screen/home.dart';
-// import 'package:imlost/model/BottomNav/MyTabBar.dart';
+// import 'package:majorproject/model/BottomNav/MyTabBar.dart';
 //
 //
 // void main() {
@@ -57,10 +57,10 @@
 // // }
 //
 //
-
 import 'package:flutter/material.dart';
-import 'package:imlost/Screen/first.dart';
-import 'package:imlost/Screen/second.dart';
+import 'package:majorproject/Screen/first.dart';
+import 'package:majorproject/Screen/second.dart';
+import 'package:majorproject/addpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -99,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyLogin()),
+                    MaterialPageRoute(builder: (context) => const MyLogin()),
+
                 );
               },
               child: Text('Login'),
@@ -120,3 +121,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
