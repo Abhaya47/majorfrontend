@@ -16,7 +16,7 @@ class Log extends StatelessWidget {
       ),
       body: FutureBuilder(
         future: apis.GetFood(
-          "http://major.dns.army/api/food?date=2024-02-13"
+          "http://major.dns.army/api/food?date=2024-02-15"
         ),
 
         builder: (BuildContext context, AsyncSnapshot<List<FoodPost>>snapshot) {
