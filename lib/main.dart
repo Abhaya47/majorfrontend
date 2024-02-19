@@ -79,9 +79,12 @@ class MyApp extends StatelessWidget {
         AsyncSnapshot<String?> snapshot){
           print(snapshot.data);
       if(snapshot.hasData){
-        return MaterialApp(title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
         home: MyTabBar()
         );
+
       }
       else{
         return MaterialApp(title: 'Login Page', theme: ThemeData(primarySwatch: Colors.grey,),
