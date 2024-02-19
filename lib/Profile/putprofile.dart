@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:majorproject/Profile/profile.dart';
 import 'package:majorproject/src/constants/colors.dart';
@@ -8,13 +9,11 @@ import 'package:majorproject/src/constants/text_strings.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 import '../service/api.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  const UpdateProfileScreen({Key? key}) : super(key: key);
+class PutProfileScreen extends StatelessWidget {
+  const PutProfileScreen({Key? key}) : super(key: key);
 
-  static const String _title = 'Update Page';
+  static const String _title = 'Put Page';
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
       "height":height,
       "pressure":1
     };
-    Response response = await api.Post(
+    Response response = await api.Put(
         "http://major.dns.army/api/ufeature", jsonEncode(data));
     Map responseMap = jsonDecode(response.body);
     if (response.statusCode == 200) {
@@ -70,7 +69,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               );
             }
             , icon: const Icon(LineAwesomeIcons.angle_left)),
-        title: Text(tEditProfile, style: Theme.of(context).textTheme.headline4),
+        title: Text(tUpdateProfile, style: Theme.of(context).textTheme.headline4),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -83,12 +82,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   SizedBox(
                     width: 120,
                     height: 120,
-                    child: InkWell(
-                      onTap: () {},
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
                         child: Image.asset('assets//logo.png')),
-                  ),
                   ),
                   Positioned(
                     bottom: 0,
@@ -153,7 +149,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         onPressed: () {
                           userinfo();
                           Fluttertoast.showToast(
-                              msg: 'Information Added',
+                              msg: 'Information Updated',
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
@@ -166,7 +162,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             backgroundColor: tPrimaryColor,
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Add Information'),
+                        child: const Text('Update Information'),
                         // child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                       ),
                     ),

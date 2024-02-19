@@ -13,8 +13,8 @@ const String tPassword = "Password";
 const String tFullName = "Full Name";
 const String tForgetPassword = "Forget Password";
 const String tSignInWithGoogle = "Sign-In with Google";
-const String tHeight = "Height";
-const String tWeight = "Weight";
+const String tHeight = "Height(in m)";
+const String tWeight = "Weight(in kg)";
 const String tAge = "Age";
 
 
@@ -67,7 +67,8 @@ const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP"
 
 // -- Profile Screen-Text
 const String tProfile = "Profile";
-const String tEditProfile = "Edit Information";
+const String tEditProfile = "Add Information";
+const String tUpdateProfile = "Update Information";
 const String tLogoutDialogHeading = "Logout";
 const String tProfileHeading = "nutricoach";
 const String tProfileSubHeading = "...@.com";

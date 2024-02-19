@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:http/http.dart';
+import 'package:majorproject/Profile/user_info.dart';
 import 'package:majorproject/model/user_food.dart';
 
 class api {
@@ -47,6 +49,28 @@ class api {
     return (response);
   }
 
+  static Put(String url, String body) async {
+    /*
+    Check if logged in
+     */
+    //write the response of /login to a file
+    //read the file and get the token
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    };
+
+    Authentication(headers);
+
+    Response response = await put(
+        Uri.parse(url),
+        headers: headers,
+        body: body
+    );
+    // print(response.body);
+    return (response);
+  }
+
   /**
    * URL String
    * Body JSON String
@@ -80,5 +104,25 @@ class api {
         else{
           throw "Unable to retrieve post";
      }
+  }
+  Future<List<MyInfo>> Getufeature(String url)
+  async {
+    Response response = await Get(url);
+
+    if(response.statusCode == 200)
+    {
+      List<dynamic> body=jsonDecode(response.body);
+  print(response.body);
+      List<MyInfo> posts= body
+          .map(
+            (dynamic item)=>MyInfo.fromJson(item),
+      ).toList();
+      return posts;
+
+    }
+
+    else{
+      throw "Unable to retrieve data";
+    }
   }
 }
