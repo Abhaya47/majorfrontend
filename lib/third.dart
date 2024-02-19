@@ -16,8 +16,6 @@ class _MyTabBarState extends State<MyTabBar> {
   int selectedIndex = 0;
 
   final widgetOptions = [
-
-
     Home(),
     Start(),
     AddPage(),
@@ -47,14 +45,48 @@ class _MyTabBarState extends State<MyTabBar> {
           textAlign: TextAlign.center,
         ),
         actions: [
+// <<<<<<< HEAD
+//           // Person icon with dropdown menu
+//           PopupMenuButton<String>(
+//             onSelected: (value) {
+//               // Handle menu item selection
+//               // You can add logic based on the selected value
+//               print(value);
+//             },
+//             itemBuilder: (BuildContext context) {
+//                 return ["Information", "something"].map((String choice) {
+//                 return PopupMenuItem<String>(
+//                   value: choice,
+//                   child: Text(choice),
+//                 );
+//               }).toList();
+//             },
+// =======
           IconButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())
           );
           },
+// >>>>>>> origin/main
             icon: Icon(Icons.person),
           ),
 
           // Menu icon with dropdown menu
+          PopupMenuButton<String>(
+            onSelected: (value) {
+              // Handle menu item selection
+              // You can add logic based on the selected value
+              print(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return ["My Profile" , "Logout"].map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+            icon: Icon(Icons.menu),
+          ),
           // PopupMenuButton<String>(
           //   onSelected: (value) {
           //     // Handle menu item selection
@@ -87,7 +119,8 @@ class _MyTabBarState extends State<MyTabBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
-        fixedColor: Colors.blue,
+        fixedColor: Colors.grey,
+        unselectedItemColor: Colors.grey,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(
@@ -115,7 +148,45 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Home'),
+        // children: [
+        //   AppBar(
+        //     centerTitle: true,
+        //     backgroundColor: Colors.grey,
+        //     title: Text("NutriCoach",
+        //     style: TextStyle(fontStyle: FontStyle.italic),
+        //     textAlign: TextAlign.center,
+        //     ),
+        //   )
+        // ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 300.0,
+              height: 300.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.grey,
+              ),
+            child: Image.asset('assets/image/food.png',
+            fit: BoxFit.cover,
+            ),
+            ),
+            // SizedBox(height: 16.0),
+            // Text('Home',
+            //   style: TextStyle(fontSize: 15.0),
+            // ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                // Add your button click logic here
+                print('Button pressed!');
+              },
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
+              child: Text('Profile'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -133,7 +204,32 @@ class _Start extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Start'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Start',
+                style: TextStyle(fontSize: 15.0),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                  // Add your button click logic here
+                  print('Button pressed!');
+                },
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
+                child: Text('Get Diet Recommendation'),
+              ),
+              SizedBox(height: 16.0),
+              ElevatedButton(
+                onPressed: () {
+                // Add your button click logic here
+                  print('Button pressed!');
+                 },
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
+                child: Text('Get Exercise Recommendation'),
+              ),
+            ],
+          ),
       ),
     );
   }
@@ -151,7 +247,22 @@ class _Add extends State<Add> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Add'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AddPage()),
+                );
+              },
+              child: Text('Go to Add Page'),
+            ),
+            SizedBox(height: 16.0), // Optional: Add spacing between button and text
+            Text('Add'),
+          ],
+        ),
       ),
     );
   }

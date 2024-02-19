@@ -9,6 +9,7 @@ import 'package:majorproject/src/constants/sizes.dart';
 import 'package:majorproject/src/constants/text_strings.dart';
 import 'package:majorproject/Profile/updateprofile.dart';
 import 'package:majorproject/Profile/profilemenu.dart';
+import 'package:majorproject/third.dart';
 import 'package:get/get.dart';
 import 'package:majorproject/third.dart';
 import 'package:flutter/services.dart';

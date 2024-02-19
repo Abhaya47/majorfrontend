@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// import 'Screen/home.dart';
+// import 'Screen/start.dart';
 // import 'package:majorproject/model/BottomNav/MyTabBar.dart';
 //
 //
@@ -78,9 +78,12 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context,
         AsyncSnapshot<String?> snapshot){
       if(snapshot.hasData){
-        return MaterialApp(title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
+        return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
         home: MyTabBar()
         );
+
       }
       else{
         return MaterialApp(title: 'Login Page', theme: ThemeData(primarySwatch: Colors.grey,),
@@ -91,6 +94,11 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// class MyHomePage extends StatefulWidget {
+//   const MyHomePage({super.key, required this.title});
+
+//   final String title;
 
 class LoginPage extends StatefulWidget {
   @override

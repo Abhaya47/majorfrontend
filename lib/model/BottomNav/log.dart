@@ -11,9 +11,9 @@ class Log extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('User'),
-      ),
+      // appBar: AppBar(
+      //   title: const Text('User'),
+      // ),
       body: FutureBuilder(
         future: apis.GetFood(
           "http://major.dns.army/api/food?date=2024-02-15"
@@ -29,15 +29,15 @@ class Log extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
                     child: Container(
-                      height: 100,
-                      width: double.infinity,
+                      height: 50,
+                      width: double.minPositive,
                       decoration: BoxDecoration(
                           gradient: const LinearGradient(
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                Colors.deepPurple,
-                                Colors.black
+                                Colors.black12,
+                                Colors.white70
                               ]
                           ),
                           borderRadius: BorderRadius.circular(8),
