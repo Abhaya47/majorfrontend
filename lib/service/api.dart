@@ -112,11 +112,12 @@ class api {
     if(response.statusCode == 200)
     {
       List<dynamic> body=jsonDecode(response.body);
-  print(response.body);
+
       List<MyInfo> posts= body
           .map(
             (dynamic item)=>MyInfo.fromJson(item),
       ).toList();
+
       return posts;
 
     }

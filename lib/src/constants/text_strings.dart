@@ -2,7 +2,7 @@
 /* -- App Text Strings -- */
 
 // -- GLOBAL Texts
-import 'dart:html';
+// import 'dart:html';
 
 const String tNext = "Next";
 const String tLogin = "Login";
@@ -16,6 +16,9 @@ const String tSignInWithGoogle = "Sign-In with Google";
 const String tHeight = "Height(in m)";
 const String tWeight = "Weight(in kg)";
 const String tAge = "Age";
+const String tPressure = "Pressure";
+const String tSugar = "Sugar";
+
 
 
 // -- Splash Screen Text

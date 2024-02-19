@@ -77,7 +77,6 @@ class MyApp extends StatelessWidget {
         future: storage.read(key: 'token'),
         builder: (BuildContext context,
         AsyncSnapshot<String?> snapshot){
-          print(snapshot.data);
       if(snapshot.hasData){
         return MaterialApp(title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
         home: MyTabBar()
@@ -88,8 +87,8 @@ class MyApp extends StatelessWidget {
           home: LoginPage(),
         );
 
-      }
-    });
+      }}
+    );
   }
 }
 

@@ -86,17 +86,17 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         borderRadius: BorderRadius.circular(100),
                         child: Image.asset('assets//logo.png')),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: const Icon(LineAwesomeIcons.camera, color: Colors.black, size: 20),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: Container(
+                  //     width: 35,
+                  //     height: 35,
+                  //     decoration:
+                  //     BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
+                  //     child: const Icon(LineAwesomeIcons.camera, color: Colors.black, size: 20),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 50),
@@ -123,6 +123,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           label: Text(tWeight), prefixIcon: Icon(LineAwesomeIcons.weight)),
                       onChanged: (value) {
                         weight= double.parse(value);
+                      },
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          label: Text(tPressure), prefixIcon: Icon(LineAwesomeIcons.prescription)),
+                      onChanged: (value) {
+                        height= double.parse(value);
+                      },
+                    ),
+                    TextFormField(
+                      decoration: const InputDecoration(
+                          label: Text(tSugar), prefixIcon: Icon(LineAwesomeIcons.prescription_bottle)),
+                      onChanged: (value) {
+                        height= double.parse(value);
                       },
                     ),
                     const SizedBox(height: tFormHeight - 20),
@@ -169,32 +183,32 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     const SizedBox(height: tFormHeight),
 
                     // -- Created Date and Delete Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text.rich(
-                          TextSpan(
-                            text: tJoined,
-                            style: TextStyle(fontSize: 12),
-                            children: [
-                              TextSpan(
-                                  text: tJoinedAt,
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
-                            ],
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent.withOpacity(0.1),
-                              elevation: 0,
-                              foregroundColor: Colors.red,
-                              shape: const StadiumBorder(),
-                              side: BorderSide.none),
-                          child: const Text(tDelete),
-                        ),
-                      ],
-                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     const Text.rich(
+                    //       TextSpan(
+                    //         text: tJoined,
+                    //         style: TextStyle(fontSize: 12),
+                    //         children: [
+                    //           TextSpan(
+                    //               text: tJoinedAt,
+                    //               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     ElevatedButton(
+                    //       onPressed: () {},
+                    //       style: ElevatedButton.styleFrom(
+                    //           backgroundColor: Colors.redAccent.withOpacity(0.1),
+                    //           elevation: 0,
+                    //           foregroundColor: Colors.red,
+                    //           shape: const StadiumBorder(),
+                    //           side: BorderSide.none),
+                    //       child: const Text(tDelete),
+                    //     ),
+                    //   ],
+                    // )
                   ],
                 ),
               ),

@@ -53,27 +53,27 @@ class ProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100), child: Image.asset('assets/image/logo.png')),
                   ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(
-                              builder: (context) => const UpdateProfileScreen())
-                          );
-                        },icon: const Icon(
-                        LineAwesomeIcons.alternate_pencil,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: Container(
+                  //     width: 35,
+                  //     height: 35,
+                  //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
+                  //     child: IconButton(
+                  //       onPressed: () {
+                  //         Navigator.push(
+                  //             context, MaterialPageRoute(
+                  //             builder: (context) => const UpdateProfileScreen())
+                  //         );
+                  //       },icon: const Icon(
+                  //       LineAwesomeIcons.alternate_pencil,
+                  //       color: Colors.black,
+                  //       size: 20,
+                  //     ),
+                  //   ),
+                  //   ),
+                  // ),
                 ],
 
               ),
@@ -185,7 +185,7 @@ class ProfileScreen extends StatelessWidget {
     Navigator.push(
         context,
         MaterialPageRoute(builder:
-            (context) => const MyLogin()
+            (context) => const MyApp()
     ));
 
   }
