@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:majorproject/Profile/putprofile.dart';
 import 'package:majorproject/main.dart';
@@ -12,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:majorproject/third.dart';
 import 'package:flutter/services.dart';
 import 'package:majorproject/Profile/Myinformation.dart';
-
+import 'package:majorproject/Screen/first.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -131,6 +132,7 @@ class ProfileScreen extends StatelessWidget {
                    .pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) { return MyInformation(); }, ), (_) => false);
               }
               ),
+
               ProfileMenuWidget(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
@@ -167,10 +169,24 @@ class ProfileScreen extends StatelessWidget {
               //         cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
               //       );
               //     }),
+
             ],
           ),
         ),
       ),
     );
+  }
+
+  logout(BuildContext context)
+  {
+    final storage = new FlutterSecureStorage();
+    storage.delete(key: 'token');
+    //redirect to login page
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder:
+            (context) => const MyLogin()
+    ));
+
   }
 }

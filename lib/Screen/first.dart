@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../service/login.dart';
 import 'second.dart';
 import 'package:majorproject/addpage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 // import '/model/BottomNav/MyTabBar.dart';
 import 'package:majorproject/third.dart';
@@ -42,12 +43,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String _email = '';
   String _password = '';
 
+  final storage = new FlutterSecureStorage();
   loginPressed() async {
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder:
-            (context) => const MyTabBar()
-        ));
     if (_formKey.currentState!.validate()) {
       // print(nameController.text);
       // print(passwordController.text);
@@ -60,6 +57,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           "http://major.dns.army/api/login", jsonEncode(data));
       Map responseMap = jsonDecode(response.body);
       if (response.statusCode == 200) {
+        print(responseMap["token"]);
+        await storage.write(key: 'token', value: responseMap["token"]);
         Navigator.push(
             context,
             MaterialPageRoute(builder:

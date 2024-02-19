@@ -1,16 +1,25 @@
 import 'dart:convert';
+
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'package:http/http.dart';
 import 'package:majorproject/Profile/user_info.dart';
 import 'package:majorproject/model/user_food.dart';
 
 class api {
 
-  static Authentication(Map<String, String> headers) {
-    String token = "Bearer 35|lkx0tZNCazVWTZmabtVk4blgp9dY5UZCssMJ2xgo";
-
+  static Authentication(Map<String, String> headers) async{
+    final storage = new FlutterSecureStorage();
+    String ?token=await storage.read(key: 'token');
+    if(token==null){
+      return headers;
+    }
     if (token != "") {
+      token = "Bearer "+token!;
+
       headers['Authorization'] = token;
     }
+    return headers;
   }
 
   /**
@@ -29,7 +38,7 @@ class api {
       "Accept": "application/json"
     };
 
-    Authentication(headers);
+    headers=await Authentication(headers);
 
     Response response = await post(
         Uri.parse(url),
@@ -71,8 +80,7 @@ class api {
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
-    Authentication(headers);
-
+    headers=await Authentication(headers);
     Response response = await get(
       Uri.parse(url),
       headers: headers,
@@ -83,7 +91,6 @@ class api {
   Future<List<FoodPost>> GetFood(String url)
   async {
      Response response = await Get(url);
-
      if(response.statusCode == 200)
        {
          List<dynamic> body=jsonDecode(response.body);
