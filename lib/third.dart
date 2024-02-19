@@ -1,7 +1,9 @@
 //home page
 import 'package:flutter/material.dart';
+import 'package:majorproject/Profile/profile.dart';
 import 'package:majorproject/addpage.dart';
 import 'model/BottomNav/log.dart';
+import 'package:majorproject/Profile/profile.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({Key? key}) : super(key: key);
@@ -43,22 +45,29 @@ class _MyTabBarState extends State<MyTabBar> {
           textAlign: TextAlign.center,
         ),
         actions: [
-          // Person icon with dropdown menu
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              // Handle menu item selection
-              // You can add logic based on the selected value
-              print(value);
-            },
-            itemBuilder: (BuildContext context) {
-                return ["Information", "something"].map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-            icon: Icon(Icons.person),
+// <<<<<<< HEAD
+//           // Person icon with dropdown menu
+//           PopupMenuButton<String>(
+//             onSelected: (value) {
+//               // Handle menu item selection
+//               // You can add logic based on the selected value
+//               print(value);
+//             },
+//             itemBuilder: (BuildContext context) {
+//                 return ["Information", "something"].map((String choice) {
+//                 return PopupMenuItem<String>(
+//                   value: choice,
+//                   child: Text(choice),
+//                 );
+//               }).toList();
+//             },
+// =======
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())
+          );
+          },
+// >>>>>>> origin/main
+//             icon: Icon(Icons.person),
           ),
 
           // Menu icon with dropdown menu
@@ -78,6 +87,22 @@ class _MyTabBarState extends State<MyTabBar> {
             },
             icon: Icon(Icons.menu),
           ),
+          // PopupMenuButton<String>(
+          //   onSelected: (value) {
+          //     // Handle menu item selection
+          //     // You can add logic based on the selected value
+          //     print(value);
+          //   },
+          //   itemBuilder: (BuildContext context) {
+          //     return ["Settings", "Logout"].map((String choice) {
+          //       return PopupMenuItem<String>(
+          //         value: choice,
+          //         child: Text(choice),
+          //       );
+          //     }).toList();
+          //   },
+          //   icon: Icon(Icons.menu),
+          // ),
         ],
       ),
 

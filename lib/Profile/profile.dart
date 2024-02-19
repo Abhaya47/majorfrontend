@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:majorproject/model/BottomNav/MyTabBar.dart';
+import 'package:majorproject/Profile/putprofile.dart';
+import 'package:majorproject/main.dart';
+// import 'package:majorproject/model/BottomNav/MyTabBar.dart';
 import 'package:majorproject/src/constants/colors.dart';
 import 'package:majorproject/src/constants/sizes.dart';
 import 'package:majorproject/src/constants/text_strings.dart';
@@ -9,8 +11,10 @@ import 'package:majorproject/Profile/updateprofile.dart';
 import 'package:majorproject/Profile/profilemenu.dart';
 import 'package:majorproject/third.dart';
 import 'package:get/get.dart';
+import 'package:majorproject/third.dart';
+import 'package:flutter/services.dart';
+import 'package:majorproject/Profile/Myinformation.dart';
 import 'package:majorproject/Screen/first.dart';
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -23,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(
-                  builder: (context) => const MyTabBar())
+                  builder: (context) => MyTabBar())
               );
         },
         icon: const Icon(LineAwesomeIcons.angle_left)),
@@ -42,8 +46,13 @@ class ProfileScreen extends StatelessWidget {
                   SizedBox(
                     width: 120,
                     height: 120,
-                    child: ClipRRect(
+                    child: InkWell (
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const UpdateProfileScreen()));
+                      },
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(100), child: Image.asset('assets/image/logo.png')),
+                  ),
                   ),
                   Positioned(
                     bottom: 0,
@@ -52,18 +61,26 @@ class ProfileScreen extends StatelessWidget {
                       width: 35,
                       height: 35,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: const Icon(
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context, MaterialPageRoute(
+                              builder: (context) => const UpdateProfileScreen())
+                          );
+                        },icon: const Icon(
                         LineAwesomeIcons.alternate_pencil,
                         color: Colors.black,
                         size: 20,
                       ),
                     ),
+                    ),
                   ),
                 ],
+
               ),
               const SizedBox(height: 10),
               Text(tProfileHeading, style: Theme.of(context).textTheme.headline4),
-              Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyText2),
+              // Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyText2),
               const SizedBox(height: 20),
 
               /// -- BUTTON
@@ -82,40 +99,78 @@ class ProfileScreen extends StatelessWidget {
                   child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                 ),
               ),
+              const SizedBox(height: 10),
+              const SizedBox(height: 10),
+
+              /// -- BUTTON
+              SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  // onPressed: () => Get.to(() => const UpdateProfileScreen()),
+                  onPressed: () {
+                    Navigator.push(
+                        context,MaterialPageRoute(
+                        builder: (context) => const PutProfileScreen())
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
+                  child: const Text(tUpdateProfile, style: TextStyle(color: tDarkColor)),
+                ),
+              ),
               const SizedBox(height: 30),
               const Divider(),
               const SizedBox(height: 10),
 
               /// -- MENU
-              ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {}),
+              // ProfileMenuWidget(title: "Settings", icon: LineAwesomeIcons.cog, onPress: () {}),
               // ProfileMenuWidget(title: "Billing Details", icon: LineAwesomeIcons.wallet, onPress: () {}),
               // ProfileMenuWidget(title: "User Management", icon: LineAwesomeIcons.user_check, onPress: () {}),
-              const Divider(),
               const SizedBox(height: 10),
-              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {print("ADA");}),
+              ProfileMenuWidget(title: "My Information", icon: LineAwesomeIcons.info, onPress: () async {
+                debugPrint('My Information');
+                Navigator.of(context, rootNavigator: true)
+                   .pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) { return MyInformation(); }, ), (_) => false);
+              }
+              ),
+
               ProfileMenuWidget(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
-                  textColor: Colors.red,
                   endIcon: false,
-                  onPress: () {
-                    Get.defaultDialog(
-                      title: "LOGOUT",
-                      titleStyle: const TextStyle(fontSize: 20),
-                      content: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 15.0),
-                        child: Text("Are you sure, you want to Logout?"),
-                      ),
-                      // confirm: Expanded(
-                      //   child: ElevatedButton(
-                      //     onPressed: () => logout(context), //please make this work!!!!!!
-                      //     style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, side: BorderSide.none),
-                      //     child: const Text("Yes"),
-                      //   ),
-                      // ),
-                      // cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
-                    );
-                  }),
+                  onPress:  () async {
+                    debugPrint('Sign Out');
+                    Navigator.of(context, rootNavigator: true)
+                        .pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context)
+                    { return const MyApp(); }, ), (_) => false,);
+                  }
+              )
+              // ProfileMenuWidget(
+              //     title: "Logout",
+              //     icon: LineAwesomeIcons.alternate_sign_out,
+              //     textColor: Colors.red,
+              //     endIcon: false,
+              //     onPress: () {
+              //       Get.defaultDialog(
+              //         title: "LOGOUT",
+              //         titleStyle: const TextStyle(fontSize: 20),
+              //         content: const Padding(
+              //           padding: EdgeInsets.symmetric(vertical: 15.0),
+              //           child: Text("Are you sure, you want to Logout?"),
+              //         ),
+              //         confirm: Expanded(
+              //           child: ElevatedButton(
+              //             onPressed: () {
+              //              Navigator.push(context, MaterialPageRoute(builder: (context) => MyApp()));
+              //             },
+              //             style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, side: BorderSide.none),
+              //             child: const Text("Yes"),
+              //           ),
+              //         ),
+              //         cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
+              //       );
+              //     }),
+
             ],
           ),
         ),
