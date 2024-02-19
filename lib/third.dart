@@ -14,8 +14,6 @@ class _MyTabBarState extends State<MyTabBar> {
   int selectedIndex = 0;
 
   final widgetOptions = [
-
-
     Home(),
     Start(),
     AddPage(),
@@ -53,7 +51,7 @@ class _MyTabBarState extends State<MyTabBar> {
               print(value);
             },
             itemBuilder: (BuildContext context) {
-              return ["Information", "something"].map((String choice) {
+                return ["Information", "something"].map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -71,7 +69,7 @@ class _MyTabBarState extends State<MyTabBar> {
               print(value);
             },
             itemBuilder: (BuildContext context) {
-              return ["Settings", "Logout"].map((String choice) {
+              return ["My Profile" , "Logout"].map((String choice) {
                 return PopupMenuItem<String>(
                   value: choice,
                   child: Text(choice),
@@ -96,7 +94,8 @@ class _MyTabBarState extends State<MyTabBar> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
-        fixedColor: Colors.blue,
+        fixedColor: Colors.grey,
+        unselectedItemColor: Colors.grey,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(
@@ -124,34 +123,45 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+        // children: [
+        //   AppBar(
+        //     centerTitle: true,
+        //     backgroundColor: Colors.grey,
+        //     title: Text("NutriCoach",
+        //     style: TextStyle(fontStyle: FontStyle.italic),
+        //     textAlign: TextAlign.center,
+        //     ),
+        //   )
+        // ],
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 100.0,
-              height: 100.0,
+              width: 300.0,
+              height: 300.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 color: Colors.grey,
               ),
-            child: Image.asset('food.png',
+            child: Image.asset('assets/image/food.png',
             fit: BoxFit.cover,
             ),
             ),
-            SizedBox(height: 16.0),
-            Text('Home',
-              style: TextStyle(fontSize: 15.0),
-            ),
+            // SizedBox(height: 16.0),
+            // Text('Home',
+            //   style: TextStyle(fontSize: 15.0),
+            // ),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 // Add your button click logic here
                 print('Button pressed!');
               },
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
               child: Text('Profile'),
             ),
           ],
-        )
+        ),
       ),
     );
   }
@@ -181,6 +191,7 @@ class _Start extends State<Start> {
                   // Add your button click logic here
                   print('Button pressed!');
                 },
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
                 child: Text('Get Diet Recommendation'),
               ),
               SizedBox(height: 16.0),
@@ -189,6 +200,7 @@ class _Start extends State<Start> {
                 // Add your button click logic here
                   print('Button pressed!');
                  },
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
                 child: Text('Get Exercise Recommendation'),
               ),
             ],

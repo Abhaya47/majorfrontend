@@ -27,6 +27,7 @@ class MyLogin extends StatelessWidget {
         ),
         body: const MyStatefulWidget(),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
