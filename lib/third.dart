@@ -67,7 +67,7 @@ class _MyTabBarState extends State<MyTabBar> {
           );
           },
 // >>>>>>> origin/main
-//             icon: Icon(Icons.person),
+            icon: Icon(Icons.person),
           ),
 
           // Menu icon with dropdown menu

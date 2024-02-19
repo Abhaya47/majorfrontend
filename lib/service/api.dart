@@ -117,6 +117,7 @@ class api {
           .map(
             (dynamic item)=>MyInfo.fromJson(item),
       ).toList();
+      print("object");
       return posts;
 
     }
