@@ -58,10 +58,11 @@
 //
 //
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:majorproject/Screen/first.dart';
 import 'package:majorproject/Screen/second.dart';
 import 'package:majorproject/addpage.dart';
-
+import 'package:majorproject/third.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -71,14 +72,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login Page',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      home: LoginPage(),
-      debugShowCheckedModeBanner: false,
-    );
+    final storage = FlutterSecureStorage();
+    return FutureBuilder(
+        future: storage.read(key: 'token'),
+        builder: (BuildContext context,
+        AsyncSnapshot<String?> snapshot){
+          print(snapshot.data);
+      if(snapshot.hasData){
+        return MaterialApp(title: "homepage", theme: ThemeData(primarySwatch: Colors.grey),
+        home: MyTabBar()
+        );
+      }
+      else{
+        return MaterialApp(title: 'Login Page', theme: ThemeData(primarySwatch: Colors.grey,),
+          home: LoginPage(),
+        );
+
+      }
+    });
   }
 }
 

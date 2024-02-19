@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:majorproject/model/BottomNav/MyTabBar.dart';
 import 'package:majorproject/src/constants/colors.dart';
@@ -8,6 +9,7 @@ import 'package:majorproject/Profile/updateprofile.dart';
 import 'package:majorproject/Profile/profilemenu.dart';
 import 'package:majorproject/third.dart';
 import 'package:get/get.dart';
+import 'package:majorproject/Screen/first.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -90,7 +92,7 @@ class ProfileScreen extends StatelessWidget {
               // ProfileMenuWidget(title: "User Management", icon: LineAwesomeIcons.user_check, onPress: () {}),
               const Divider(),
               const SizedBox(height: 10),
-              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {}),
+              ProfileMenuWidget(title: "Information", icon: LineAwesomeIcons.info, onPress: () {print("ADA");}),
               ProfileMenuWidget(
                   title: "Logout",
                   icon: LineAwesomeIcons.alternate_sign_out,
@@ -106,12 +108,12 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       // confirm: Expanded(
                       //   child: ElevatedButton(
-                      //     onPressed: () => AuthenticationRepository.instance.logout(),
+                      //     onPressed: () => logout(context), //please make this work!!!!!!
                       //     style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent, side: BorderSide.none),
                       //     child: const Text("Yes"),
                       //   ),
                       // ),
-                      cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
+                      // cancel: OutlinedButton(onPressed: () => Get.back(), child: const Text("No")),
                     );
                   }),
             ],
@@ -119,5 +121,18 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  logout(BuildContext context)
+  {
+    final storage = new FlutterSecureStorage();
+    storage.delete(key: 'token');
+    //redirect to login page
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder:
+            (context) => const MyLogin()
+    ));
+
   }
 }
