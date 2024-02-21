@@ -14,7 +14,9 @@ import 'package:get/get.dart';
 import 'package:majorproject/third.dart';
 import 'package:flutter/services.dart';
 import 'package:majorproject/Profile/Myinformation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:majorproject/Screen/first.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -80,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(tProfileHeading, style: Theme.of(context).textTheme.headline4),
-              // Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyText2),
+              Text(tProfileSubHeading, style: Theme.of(context).textTheme.headline6?.copyWith(fontStyle: FontStyle.italic, color: Colors.grey)),
               const SizedBox(height: 20),
 
               /// -- BUTTON

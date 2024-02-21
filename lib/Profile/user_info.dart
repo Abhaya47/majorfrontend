@@ -1,7 +1,7 @@
 class MyInfo{
   // final String fullname;
   final double ?height;
-  final double ?weight;
+  final int weight;
   final int pressure;
 
   MyInfo({
@@ -14,7 +14,7 @@ class MyInfo{
     MyInfo ufeature =  MyInfo(
       // fullname: json['fullname'] as String,
       height: json['height'] as double,
-      weight: json['weight'] as double,
+      weight: json['weight'] as int,
       pressure: json['pressure'] as int,
     );
     return ufeature;

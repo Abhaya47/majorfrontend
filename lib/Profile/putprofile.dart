@@ -38,9 +38,15 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController pressureController = TextEditingController();
+  TextEditingController sugarController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  String? selectedGender;
   double ?weight;
   double ?height;
+
   userinfo() async {
     Map data = {
       "weight":weight,
@@ -84,7 +90,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     height: 120,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('assets//logo.png')),
+                        child: Image.asset('assets/image/logo.png')),
                   ),
                   // Positioned(
                   //   bottom: 0,
@@ -105,12 +111,38 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
               Form(
                 child: Column(
                   children: [
-                    TextFormField(
+                    DropdownButtonFormField<String>(
                       decoration: const InputDecoration(
-                          label: Text(tFullName), prefixIcon: Icon(LineAwesomeIcons.user)),
+                        labelText: 'Gender',
+                        prefixIcon: Icon(LineAwesomeIcons.user),
+                      ),
+                      value: selectedGender,
+                      items: ['Male', 'Female'].map((String gender) {
+                        return DropdownMenuItem<String>(
+                          value: gender,
+                          child: Text(gender),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          selectedGender = newValue!;
+                        });
+                      },
+                      // validator: (value) {
+                      //   if (value == null || value.isEmpty) {
+                      //     return 'Please select a gender';
+                      //   }
+                      //   return null;
+                      // },
                     ),
-                    const SizedBox(height: tFormHeight - 20),
+                    // TextFormField(
+                    //   decoration: const InputDecoration(
+                    //       label: Text(tFullName), prefixIcon: Icon(LineAwesomeIcons.user)),
+                    // ),
+                    // const SizedBox(height: tFormHeight - 20),
                     TextFormField(
+                      controller: heightController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tHeight), prefixIcon: Icon(LineAwesomeIcons.text_height)),
                       onChanged: (value) {
@@ -119,6 +151,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
+                      controller: weightController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tWeight), prefixIcon: Icon(LineAwesomeIcons.weight)),
                       onChanged: (value) {
@@ -126,6 +160,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       },
                     ),
                     TextFormField(
+                      controller: pressureController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tPressure), prefixIcon: Icon(LineAwesomeIcons.prescription)),
                       onChanged: (value) {
@@ -133,6 +169,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       },
                     ),
                     TextFormField(
+                      controller: sugarController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tSugar), prefixIcon: Icon(LineAwesomeIcons.prescription_bottle)),
                       onChanged: (value) {
@@ -141,19 +179,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
+                      controller: ageController,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tAge), prefixIcon: Icon(LineAwesomeIcons.user_clock)),
                     ),
                     const SizedBox(height: tFormHeight - 20),
-                    // TextFormField(
-                    //   obscureText: true,
-                    //   decoration: InputDecoration(
-                    //     label: const Text(tPassword),
-                    //     prefixIcon: const Icon(Icons.fingerprint),
-                    //     suffixIcon:
-                    //     IconButton(icon: const Icon(LineAwesomeIcons.eye_slash), onPressed: () {}),
-                    //   ),
-                    // ),
                     const SizedBox(height: tFormHeight),
 
                     // -- Form Submit Button
@@ -161,22 +192,50 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       width: double.infinity,
                       child: TextButton(
                         onPressed: () {
-                          userinfo();
-                          Fluttertoast.showToast(
-                              msg: 'Information Updated',
+                          if (weightController.text.isEmpty ||
+                              heightController.text.isEmpty ||
+                              ageController.text.isEmpty ||
+                              pressureController.text.isEmpty ||
+                              sugarController.text.isEmpty) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Please fill all the fields"),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop(); // Close the dialog
+                                      },
+                                      child: Text("OK"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {
+                            // All fields are filled, proceed with form submission
+                            userinfo();
+                            Fluttertoast.showToast(
+                              msg: 'Information Added',
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
                               backgroundColor: Colors.grey,
                               textColor: Colors.white,
-                              fontSize: 16.0);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
+                              fontSize: 16.0,
+                            );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileScreen()),
+                            );
+                          }
                         },
                         style: TextButton.styleFrom(
                             backgroundColor: tPrimaryColor,
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Update Information'),
+                        child: const Text('Add Information'),
                         // child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                       ),
                     ),

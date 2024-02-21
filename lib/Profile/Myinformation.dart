@@ -79,6 +79,25 @@ class MyInformation extends StatelessWidget {
                             style: const TextStyle(fontSize: 12,color: Colors.white),
                             maxLines: 1,)),
                         ),
+                        Container(
+                          height: 100,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              gradient: const LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.deepPurple,
+                                    Colors.black
+                                  ]
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: Colors.black)
+                          ),
+                          child: Center(child: Text(post.pressure.toString(),
+                            style: const TextStyle(fontSize: 12,color: Colors.white),
+                            maxLines: 1,)),
+                        ),
                     ],
                     ),
                   ),

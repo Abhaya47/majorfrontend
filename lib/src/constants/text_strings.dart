@@ -73,8 +73,8 @@ const String tProfile = "Profile";
 const String tEditProfile = "Add Information";
 const String tUpdateProfile = "Update Information";
 const String tLogoutDialogHeading = "Logout";
-const String tProfileHeading = "nutricoach";
-const String tProfileSubHeading = "...@.com";
+const String tProfileHeading = "NutriCoach";
+const String tProfileSubHeading = "Revolutionising Health and Fitness using AI";
 //-- Menu
 const String tMenu5 = "Logout";
 const String tMenu1 = "Settings";
