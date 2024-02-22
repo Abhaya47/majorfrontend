@@ -25,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue[200],
         leading: IconButton(
             onPressed: () {
               Navigator.push(
@@ -97,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.blue[200], side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                 ),
               ),
@@ -116,7 +117,7 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.blue[200], side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tUpdateProfile, style: TextStyle(color: tDarkColor)),
                 ),
               ),
@@ -144,7 +145,7 @@ class ProfileScreen extends StatelessWidget {
                     debugPrint('Sign Out');
                     Navigator.of(context, rootNavigator: true)
                         .pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context)
-                    { return const MyApp(); }, ), (_) => false,);
+                    { return LoginPage(); }, ), (_) => false,);
                   }
               )
               // ProfileMenuWidget(
@@ -180,16 +181,15 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  logout(BuildContext context)
-  {
-    final storage = new FlutterSecureStorage();
-    storage.delete(key: 'token');
-    //redirect to login page
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder:
-            (context) => const MyApp()
-    ));
+  // logout(BuildContext context)
+  // {
+  //   final storage = new FlutterSecureStorage();
+  //   storage.delete(key: 'token');
+  //   //redirect to login page
+  //   Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder:
+  //           (context) => const MyApp()
+  //   ));
 
   }
-}

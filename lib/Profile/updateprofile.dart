@@ -45,15 +45,22 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController sugarController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   // String? selectedImagePath;
-  double ?weight;
+  int ?weight;
   double ?height;
+  int ?pressure;
+  int ?sugar;
+  int ?age;
   String? selectedGender;
 
   userinfo() async {
+
     Map data = {
       "weight":weight,
       "height":height,
-      "pressure":1
+      "pressure":pressure,
+      "sugar":sugar,
+      "age":age,
+      "gender": selectedGender,
     };
     Response response = await api.Post(
         "http://major.dns.army/api/ufeature", jsonEncode(data));
@@ -128,7 +135,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         prefixIcon: Icon(LineAwesomeIcons.user),
                       ),
                       value: selectedGender,
-                      items: ['Male', 'Female'].map((String gender) {
+                      items: ['male', 'female'].map((String gender) {
                         return DropdownMenuItem<String>(
                           value: gender,
                           child: Text(gender),
@@ -139,12 +146,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           selectedGender = newValue!;
                         });
                       },
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please select a gender';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
@@ -155,14 +156,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       onChanged: (value) {
                         height= double.parse(value);
                       },
-                      // validator:
-                      //     (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your height';
-                      //   }
-                      //   // return null;
-                      // },
-                      // doubleValidator,
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
@@ -171,14 +164,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tWeight), prefixIcon: Icon(LineAwesomeIcons.weight)),
                       onChanged: (value) {
-                        weight= double.parse(value);
+                        weight= int.parse(value);
                       },
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your weight';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     TextFormField(
                       controller: pressureController,
@@ -186,14 +173,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tPressure), prefixIcon: Icon(LineAwesomeIcons.prescription)),
                       onChanged: (value) {
-                        height= double.parse(value);
+                        pressure= int.parse(value);
                       },
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your pressure level';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     TextFormField(
                       controller: sugarController,
@@ -201,14 +182,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tSugar), prefixIcon: Icon(LineAwesomeIcons.prescription_bottle)),
                       onChanged: (value) {
-                        height= double.parse(value);
+                        sugar= int.parse(value);
                       },
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your sugar level';
-                      //   }
-                      //   return null;
-                      // },
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     TextFormField(
@@ -216,12 +191,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tAge), prefixIcon: Icon(LineAwesomeIcons.user_clock)),
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please enter your age';
-                      //   }
-                      //   return null;
-                      // },
+                      onChanged: (value) {
+                        age= int.parse(value);
+                      },
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     const SizedBox(height: tFormHeight),

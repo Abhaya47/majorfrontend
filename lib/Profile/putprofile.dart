@@ -43,16 +43,29 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextEditingController pressureController = TextEditingController();
   TextEditingController sugarController = TextEditingController();
   TextEditingController ageController = TextEditingController();
-  String? selectedGender;
-  double ?weight;
+  int ?weight;
   double ?height;
+  int ?pressure;
+  int ?sugar;
+  int ?age;
+  String? selectedGender;
 
   userinfo() async {
     Map data = {
       "weight":weight,
       "height":height,
-      "pressure":1
+      "pressure":pressure,
+      "sugar":sugar,
+      "age":age,
+      "gender": selectedGender,
+      // "weight":50,
+      // "height":1.88,
+      // "pressure":1,
+      // "sugar":1,
+      // "age":22,
+      // "gender": 'male',
     };
+    print(sugar);
     Response response = await api.Put(
         "http://major.dns.army/api/ufeature", jsonEncode(data));
     Map responseMap = jsonDecode(response.body);
@@ -117,7 +130,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                         prefixIcon: Icon(LineAwesomeIcons.user),
                       ),
                       value: selectedGender,
-                      items: ['Male', 'Female'].map((String gender) {
+                      items: ['male', 'female'].map((String gender) {
                         return DropdownMenuItem<String>(
                           value: gender,
                           child: Text(gender),
@@ -128,18 +141,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           selectedGender = newValue!;
                         });
                       },
-                      // validator: (value) {
-                      //   if (value == null || value.isEmpty) {
-                      //     return 'Please select a gender';
-                      //   }
-                      //   return null;
-                      // },
                     ),
-                    // TextFormField(
-                    //   decoration: const InputDecoration(
-                    //       label: Text(tFullName), prefixIcon: Icon(LineAwesomeIcons.user)),
-                    // ),
-                    // const SizedBox(height: tFormHeight - 20),
                     TextFormField(
                       controller: heightController,
                       keyboardType: TextInputType.number,
@@ -156,7 +158,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tWeight), prefixIcon: Icon(LineAwesomeIcons.weight)),
                       onChanged: (value) {
-                        weight= double.parse(value);
+                        weight= int.parse(value);
                       },
                     ),
                     TextFormField(
@@ -165,7 +167,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tPressure), prefixIcon: Icon(LineAwesomeIcons.prescription)),
                       onChanged: (value) {
-                        height= double.parse(value);
+                        pressure= int.parse(value);
                       },
                     ),
                     TextFormField(
@@ -174,7 +176,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       decoration: const InputDecoration(
                           label: Text(tSugar), prefixIcon: Icon(LineAwesomeIcons.prescription_bottle)),
                       onChanged: (value) {
-                        height= double.parse(value);
+                        sugar= int.parse(value);
                       },
                     ),
                     const SizedBox(height: tFormHeight - 20),
@@ -183,6 +185,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                           label: Text(tAge), prefixIcon: Icon(LineAwesomeIcons.user_clock)),
+                      onChanged: (value) {
+                        age= int.parse(value);
+                      },
                     ),
                     const SizedBox(height: tFormHeight - 20),
                     const SizedBox(height: tFormHeight),
@@ -201,7 +206,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Please fill all the fields"),
+
+                            title: Text("Please fill all the fields"),
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
@@ -218,7 +224,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                             userinfo();
                             Fluttertoast.showToast(
                               msg: 'Information Added',
-                              toastLength: Toast.LENGTH_SHORT,
+                              toastLength: Toast.LENGTH_LONG,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
                               backgroundColor: Colors.grey,

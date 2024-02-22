@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:majorproject/main.dart';
 import '../third.dart';
 import 'package:http/http.dart';
 import '../service/api.dart';
@@ -20,12 +22,22 @@ class MyRegistration extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title,
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (context) => LoginPage())
+                );
+              },
+              icon: const Icon(LineAwesomeIcons.angle_left)),
+          title: const Text(_title,
           style: TextStyle(color: Colors.white),),
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.blue[200],
         ),
         body: const MyStatefulWidget(),
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -41,6 +53,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   String _email = '';
   String _password = '';
   String _confirmPassword = '';
+  String _name='';
 
   final storage = FlutterSecureStorage();
 
@@ -51,12 +64,14 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
       Map data = {
         "email": _email,
-        "password": _password
+        "password": _password,
+        "confirmPassword":_confirmPassword,
+        'name': _name,
       };
       Response response = await api.Post(
           "http://major.dns.army/api/register", jsonEncode(data));
       Map responseMap = jsonDecode(response.body);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         print(responseMap["token"]);
         await storage.write(key: 'token', value: responseMap["token"]);
         Navigator.push(
@@ -132,6 +147,18 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
               child: TextFormField(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Enter name',
+                ),
+                  onChanged: (value) {
+                    _name = value;
+                  }
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+              child: TextFormField(
                 obscureText: true,
                 controller: passwordController,
                 decoration: const InputDecoration(
@@ -162,9 +189,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Register'),
                   onPressed: registerPressed,
-                  style: ElevatedButton.styleFrom(primary: Colors.grey),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[200]),
+                  child: const Text('Register'),
                 )
             ),
           ],

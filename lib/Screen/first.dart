@@ -2,6 +2,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:majorproject/main.dart';
 import '../service/login.dart';
 import 'second.dart';
 import 'package:majorproject/addpage.dart';
@@ -22,9 +24,18 @@ class MyLogin extends StatelessWidget {
     return MaterialApp(
       title: _title,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title,
+        appBar: AppBar(
+          leading: IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (context) => LoginPage())
+                );
+              },
+              icon: const Icon(LineAwesomeIcons.angle_left)),
+          title: const Text(_title,
           style: TextStyle(color: Colors.white),),
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.blue[200],
         ),
         body: const MyStatefulWidget(),
       ),
@@ -175,7 +186,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                 //         ));
                 //   }
                 // },
-                style: ElevatedButton.styleFrom(primary: Colors.grey),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[200]),
               )
           ),
           Row(

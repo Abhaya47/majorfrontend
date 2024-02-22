@@ -45,7 +45,7 @@ class api {
         headers: headers,
         body: body
     );
-    // print(response.body);
+    print(response.body);
     return (response);
   }
 
@@ -60,13 +60,14 @@ class api {
       "Accept": "application/json"
     };
 
-    Authentication(headers);
+    headers=await Authentication(headers);
 
     Response response = await put(
         Uri.parse(url),
         headers: headers,
         body: body
     );
+    print(response.body);
     // print(response.body);
     return (response);
   }
@@ -105,7 +106,7 @@ class api {
           throw "Unable to retrieve post";
      }
   }
-  Future<List<MyInfo>> Getufeature(String url)
+  Future<List<InfoPosts>> Getufeature(String url)
   async {
     Response response = await Get(url);
 
@@ -113,9 +114,9 @@ class api {
     {
       List<dynamic> body=jsonDecode(response.body);
 
-      List<MyInfo> posts= body
+      List<InfoPosts> posts= body
           .map(
-            (dynamic item)=>MyInfo.fromJson(item),
+            (dynamic item)=>InfoPosts.fromJson(item),
       ).toList();
       return posts;
 
