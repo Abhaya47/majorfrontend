@@ -2,7 +2,7 @@
 /* -- App Text Strings -- */
 
 // -- GLOBAL Texts
-import 'dart:html';
+// import 'dart:html';
 
 const String tNext = "Next";
 const String tLogin = "Login";

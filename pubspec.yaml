@@ -41,6 +41,7 @@ dependencies:
   line_awesome_flutter: ^2.0.0
 #  image_picker: ^0.8.6+1
   flutter_secure_storage: ^8.1.0
+  flutter_screenutil: ^5.9.0
 #  flutter_secure_storage: ^8.1.0
 flutter_icons:
   android: "launcher_icon"

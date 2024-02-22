@@ -81,7 +81,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                     print(nameController.text);
                     print(passwordController.text);
                   },
-                  style: ElevatedButton.styleFrom(primary: Colors.grey),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                 )
             ),
           ],
