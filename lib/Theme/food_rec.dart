@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import '../user_food.dart';
 import '../../service/api.dart';
+import 'package:majorproject/choose_food.dart';
 
 
-class Log extends StatelessWidget {
-  Log({Key? key}) : super(key: key);
+class Rec extends StatelessWidget {
+  Rec({Key? key}) : super(key: key);
   final api apis=api();
   // DateTime now = new DateTime.now();
   // // DateTime date = new DateTime(now.year, now.month, now.day);
@@ -18,7 +19,7 @@ class Log extends StatelessWidget {
       // ),
       body: FutureBuilder(
         future: apis.GetFood(
-          "http://major.dns.army/api/food?date=2024-02-15"
+            "http://major.dns.army/api/recommend"
         ),
 
         builder: (BuildContext context, AsyncSnapshot<List<FoodPost>>snapshot) {
@@ -26,7 +27,7 @@ class Log extends StatelessWidget {
             List<FoodPost>?posts = snapshot.data;
             return ListView(
               children: posts!
-                .map(
+                  .map(
                     (FoodPost post) =>Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
@@ -48,6 +49,11 @@ class Log extends StatelessWidget {
                       child: Center(child: Text(post.name,
                         style: const TextStyle(fontSize: 12,color: Colors.white),
                         maxLines: 1,)),
+                    ),
+                    onTap:() => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => choose_food(post),
+                      ),
                     ),
                   ),
                 ),

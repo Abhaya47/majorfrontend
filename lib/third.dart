@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:majorproject/Profile/profile.dart';
 import 'package:majorproject/addpage.dart';
 import 'model/BottomNav/log.dart';
+import 'Exercise/exercises.dart';
 import 'package:majorproject/Profile/profile.dart';
 
 class MyTabBar extends StatefulWidget {
@@ -14,6 +15,9 @@ class MyTabBar extends StatefulWidget {
 
 class _MyTabBarState extends State<MyTabBar> {
   int selectedIndex = 0;
+
+  final double age = 10;
+  final double bmi=20;
 
   final widgetOptions = [
     Home(),
@@ -200,40 +204,277 @@ class Start extends StatefulWidget {
 }
 
 class _Start extends State<Start> {
+  String frequency = "";
+  bool showExerciseOptions = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
+        child: Form(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Start',
-                style: TextStyle(fontSize: 15.0),
+              Column(
+                children: [
+                  // RadioListTile(
+                  //   title: Text("3 times a day"),
+                  //   value: "3",
+                  //   groupValue: frequency,
+                  //   onChanged: (value) {
+                  //     setState(() {
+                  //       frequency = value.toString();
+                  //     });
+                  //   },
+                  // ),
+
+                  // RadioListTile(
+                  //   title: Text("4 times a day"),
+                  //   value: "4",
+                  //   groupValue: frequency,
+                  //   onChanged: (value) {
+                  //     setState(() {
+                  //       frequency = value.toString();
+                  //     });
+                  //   },
+                  // ),
+                ],
               ),
               SizedBox(height: 16.0),
-              ElevatedButton(
+              TextButton(
                 onPressed: () {
                   // Add your button click logic here
                   print('Button pressed!');
                 },
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
-                child: Text('Get Diet Recommendation'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      Colors.grey),),
+                child: Text('Get Diet Recommendation',
+                style:TextStyle(backgroundColor: Colors.grey)
+                ),
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                // Add your button click logic here
-                  print('Button pressed!');
-                 },
+                  setState(() {
+                    showExerciseOptions = true;
+                  });
+                  // Add your button click logic here
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => const Exercises(age: 25.0, bmi: 22.0),
+                  //   ),
+                  // );
+                  // print('Button pressed!');
+                },
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
                 child: Text('Get Exercise Recommendation'),
               ),
+
+              Visibility(
+                visible: showExerciseOptions,
+                child: Column(
+                  children: [
+                    RadioListTile(
+                      title: Text("Abdominals"),
+                      value: "Abdominals",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    // RadioListTile(
+                    //   title: Text("Abductors"),
+                    //   value: "Option 2",
+                    //   groupValue: frequency,
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       frequency = value.toString();
+                    //     });
+                    //   },
+                    // ),
+                    // RadioListTile(
+                    //   title: Text("Adductors"),
+                    //   value: "Option 2",
+                    //   groupValue: frequency,
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       frequency = value.toString();
+                    //     });
+                    //   },
+                    // ),
+                    RadioListTile(
+                      title: Text("Biceps"),
+                      value: "Biceps",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    // RadioListTile(
+                    //   title: Text("Calves"),
+                    //   value: "Option 2",
+                    //   groupValue: frequency,
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       frequency = value.toString();
+                    //     });
+                    //   },
+                    // ),
+                    RadioListTile(
+                      title: Text("Chest"),
+                      value: "Chest",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Forearms"),
+                      value: "Forearms",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Glutes"),
+                      value: "Glutes",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Hamstrings"),
+                      value: "Hamstrings",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    // RadioListTile(
+                    //   title: Text("Lats"),
+                    //   value: "Option 2",
+                    //   groupValue: frequency,
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       frequency = value.toString();
+                    //     });
+                    //   },
+                    // ),
+                    RadioListTile(
+                      title: Text("Lower Back"),
+                      value: "Lower Back",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Middle Back"),
+                      value: "Middle Back",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Neck"),
+                      value: "Neck",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Quadriceps"),
+                      value: "Quadriceps",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: Text("Shoulders"),
+                      value: "Shoulders",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                    // RadioListTile(
+                    //   title: Text("Traps"),
+                    //   value: "Option 2",
+                    //   groupValue: frequency,
+                    //   onChanged: (value) {
+                    //     setState(() {
+                    //       frequency = value.toString();
+                    //     });
+                    //   },
+                    // ),
+                    RadioListTile(
+                      title: Text("Triceps"),
+                      value: "Triceps",
+                      groupValue: frequency,
+                      onChanged: (value) {
+                        setState(() {
+                          frequency = value.toString();
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
+        ),
+        ),
       ),
     );
   }
 }
+
+          // Exercises widget
+        //   class Exercises extends StatefulWidget {
+        // const Exercises({Key? key, required this.age, required this.bmi}) : super(key: key);
+        //
+        // final double bmi;
+        // final double age;
+        //
+        // @override
+        // State<Exercises> createState() => _ExercisesState();
+        // }
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class Add extends StatefulWidget {
   const Add({Key? key}) : super(key: key);
