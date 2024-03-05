@@ -189,15 +189,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  // logout(BuildContext context)
-  // {
-  //   final storage = new FlutterSecureStorage();
-  //   storage.delete(key: 'token');
-  //   //redirect to login page
-  //   Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder:
-  //           (context) => const MyApp()
-  //   ));
+
 
   }

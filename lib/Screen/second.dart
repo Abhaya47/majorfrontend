@@ -200,6 +200,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   onPressed: registerPressed,
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue[200]),
                   child: const Text('Register'),
+
                 )
             ),
           ],
