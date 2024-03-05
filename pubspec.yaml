@@ -35,12 +35,12 @@ dependencies:
 #  flutter_secure_storage: ^4.2.1
   get: ^4.6.5
   google_fonts: ^4.0.4
-  fluttertoast: ^8.0.7
   image_picker: ^1.0.0
   http: ^0.13.5
   line_awesome_flutter: ^2.0.0
-#  image_picker: ^0.8.6+1
+  fluttertoast: ^8.2.4
   flutter_secure_storage: ^8.1.0
+
   flutter_screenutil: ^5.9.0
 #  flutter_secure_storage: ^8.1.0
 flutter_icons:

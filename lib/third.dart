@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:majorproject/Profile/profile.dart';
 import 'package:majorproject/addpage.dart';
+import 'package:majorproject/main.dart';
+import 'package:majorproject/model/recommend/getdiet.dart';
+import 'package:majorproject/model/recommend/getexercise.dart';
 import 'model/BottomNav/log.dart';
 import 'Exercise/exercises.dart';
 import 'package:majorproject/Profile/profile.dart';
@@ -34,6 +37,7 @@ class _MyTabBarState extends State<MyTabBar> {
 
   final widgetTitle = {"home", "start", "add", "log"};
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,55 +46,29 @@ class _MyTabBarState extends State<MyTabBar> {
       ),
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.grey,
-        title: Text(
+        backgroundColor: Colors.blue[200],
+        automaticallyImplyLeading: false,
+        title: const Text(
           "NutriCoach",
           style: TextStyle(fontStyle: FontStyle.italic),
           textAlign: TextAlign.center,
         ),
         actions: [
-// <<<<<<< HEAD
-//           // Person icon with dropdown menu
-//           PopupMenuButton<String>(
-//             onSelected: (value) {
-//               // Handle menu item selection
-//               // You can add logic based on the selected value
-//               print(value);
-//             },
-//             itemBuilder: (BuildContext context) {
-//                 return ["Information", "something"].map((String choice) {
-//                 return PopupMenuItem<String>(
-//                   value: choice,
-//                   child: Text(choice),
-//                 );
-//               }).toList();
-//             },
-// =======
           IconButton(onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen())
           );
           },
-// >>>>>>> origin/main
             icon: Icon(Icons.person),
           ),
 
-          // Menu icon with dropdown menu
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              // Handle menu item selection
-              // You can add logic based on the selected value
-              print(value);
-            },
-            itemBuilder: (BuildContext context) {
-              return ["My Profile" , "Logout"].map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-            icon: Icon(Icons.menu),
+          IconButton(onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage())
+            );
+          },
+            icon: Icon(Icons.logout),
           ),
+
+          // Menu icon with dropdown menu
           // PopupMenuButton<String>(
           //   onSelected: (value) {
           //     // Handle menu item selection
@@ -98,7 +76,7 @@ class _MyTabBarState extends State<MyTabBar> {
           //     print(value);
           //   },
           //   itemBuilder: (BuildContext context) {
-          //     return ["Settings", "Logout"].map((String choice) {
+          //     return ["Logout"].map((String choice) {
           //       return PopupMenuItem<String>(
           //         value: choice,
           //         child: Text(choice),
@@ -109,23 +87,12 @@ class _MyTabBarState extends State<MyTabBar> {
           // ),
         ],
       ),
-
-          /*IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.person),
-          )
-        ],
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
-      ),*/
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
         onTap: onItemTapped,
-        fixedColor: Colors.grey,
-        unselectedItemColor: Colors.grey,
-        items: <BottomNavigationBarItem>[
+        fixedColor: Colors.blue[200],
+        unselectedItemColor: Colors.blue[200],
+        items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.house,
@@ -183,10 +150,11 @@ class _Home extends State<Home> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
                 // Add your button click logic here
                 print('Button pressed!');
               },
-              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
+              style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue[200]!)),
               child: Text('Profile'),
             ),
           ],
@@ -216,59 +184,26 @@ class _Start extends State<Start> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                children: [
-                  // RadioListTile(
-                  //   title: Text("3 times a day"),
-                  //   value: "3",
-                  //   groupValue: frequency,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       frequency = value.toString();
-                  //     });
-                  //   },
-                  // ),
 
-                  // RadioListTile(
-                  //   title: Text("4 times a day"),
-                  //   value: "4",
-                  //   groupValue: frequency,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       frequency = value.toString();
-                  //     });
-                  //   },
-                  // ),
-                ],
-              ),
               SizedBox(height: 16.0),
               TextButton(
                 onPressed: () {
-                  // Add your button click logic here
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GetDietRec()));
                   print('Button pressed!');
                 },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.grey),),
-                child: Text('Get Diet Recommendation',
-                style:TextStyle(backgroundColor: Colors.grey)
-                ),
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue[200]!)),
+                child: Text('Get Diet Recommendation'),
+
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    showExerciseOptions = true;
-                  });
-                  // Add your button click logic here
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => const Exercises(age: 25.0, bmi: 22.0),
-                  //   ),
-                  // );
-                  // print('Button pressed!');
-                },
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.grey)),
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GetExercise()));
+                // Add your button click logic here
+                  print('Button pressed!');
+                 },
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue[200]!)),
+
                 child: Text('Get Exercise Recommendation'),
               ),
 

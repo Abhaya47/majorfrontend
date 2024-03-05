@@ -48,7 +48,6 @@ String ?food = "";
     // Navigator.pushNamed(context, '/log');
   }
   }
-
   final _formKey = GlobalKey<FormState>();
   TextEditingController _foodController = TextEditingController();
   //TextEditingController _exerciseController = TextEditingController();

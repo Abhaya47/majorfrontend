@@ -1,62 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'Screen/food_frequency.dart';
-// import 'package:majorproject/model/BottomNav/MyTabBar.dart';
-//
-//
-// void main() {
-//   runApp(const MyApp());
-// }
-//
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       initialRoute: 'welcome',
-//       routes: {
-//         'welcome': (context) => const MyTabBar(),
-//       },
-//       // title: 'NutriCoach',
-//       // theme: ThemeData(
-//       //   primarySwatch: Colors.grey,
-//       // ),
-//       // debugShowCheckedModeBanner: false,
-//       // home: LoginPage(),
-//     );
-//   }
-// }
-// //
-// // class LoginPage extends StatelessWidget {
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       body: Center(
-// //         child: Column(
-// //           mainAxisAlignment: MainAxisAlignment.center,
-// //           children: <Widget>[
-// //             Image.asset('assets/image/logo.png'),
-// //             SizedBox(height: 20),
-// //             ElevatedButton(
-// //               onPressed: () {
-// //               },
-// //               child: Text('Login'),
-// //             ),
-// //             SizedBox(height: 10),
-// //             ElevatedButton(
-// //               onPressed: () {
-// //               },
-// //               child: Text('Sign Up'),
-// //             ),
-// //           ],
-// //         ),
-// //       ),
-// //     );
-// //   }
-// // }
-//
-//
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:majorproject/Screen/first.dart';
@@ -77,7 +18,6 @@ class MyApp extends StatelessWidget {
         future: storage.read(key: 'token'),
         builder: (BuildContext context,
         AsyncSnapshot<String?> snapshot){
-          print(snapshot.data);
       if(snapshot.hasData){
         return MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -87,12 +27,15 @@ class MyApp extends StatelessWidget {
 
       }
       else{
-        return MaterialApp(title: 'Login Page', theme: ThemeData(primarySwatch: Colors.grey,),
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Login Page',
+          theme: ThemeData(primarySwatch: Colors.grey,),
           home: LoginPage(),
         );
 
-      }
-    });
+      }}
+    );
   }
 }
 
@@ -120,9 +63,10 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => const MyLogin()),
-
                 );
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[200]),
               child: Text('Login'),
             ),
             SizedBox(height: 10),
@@ -133,12 +77,15 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => const MyRegistration()),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue[200]),
               child: Text('Sign Up'),
             ),
           ],
         ),
       ),
     );
+
   }
 }
 

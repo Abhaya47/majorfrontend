@@ -14,7 +14,9 @@ import 'package:get/get.dart';
 import 'package:majorproject/third.dart';
 import 'package:flutter/services.dart';
 import 'package:majorproject/Profile/Myinformation.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:majorproject/Screen/first.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -23,6 +25,7 @@ class ProfileScreen extends StatelessWidget {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue[200],
         leading: IconButton(
             onPressed: () {
               Navigator.push(
@@ -32,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
         },
         icon: const Icon(LineAwesomeIcons.angle_left)),
         title: Text(tProfile, style: Theme.of(context).textTheme.headline4),
-        actions: [IconButton(onPressed: () {}, icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon))],
+        // actions: [IconButton(onPressed: () {}, icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon))],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -54,33 +57,41 @@ class ProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100), child: Image.asset('assets/image/logo.png')),
                   ),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(
-                              builder: (context) => const UpdateProfileScreen())
-                          );
-                        },icon: const Icon(
-                        LineAwesomeIcons.alternate_pencil,
-                        color: Colors.black,
-                        size: 20,
-                      ),
-                    ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: Container(
+                  //     width: 35,
+                  //     height: 35,
+                  //     decoration: BoxDecoration(borderRadius: BorderRadius.circular(100), color: tPrimaryColor),
+                  //     child: IconButton(
+                  //       onPressed: () {
+                  //         Navigator.push(
+                  //             context, MaterialPageRoute(
+                  //             builder: (context) => const UpdateProfileScreen())
+                  //         );
+                  //       },icon: const Icon(
+                  //       LineAwesomeIcons.alternate_pencil,
+                  //       color: Colors.black,
+                  //       size: 20,
+                  //     ),
+                  //   ),
+                  //   ),
+                  // ),
                 ],
 
               ),
               const SizedBox(height: 10),
-              Text(tProfileHeading, style: Theme.of(context).textTheme.headline4),
-              // Text(tProfileSubHeading, style: Theme.of(context).textTheme.bodyText2),
+              Text(tProfileHeading, style: Theme.of(context).textTheme.headline4?.copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
+              // Center(
+              //   child: Text(
+              //     tProfileSubHeading,
+              //     style: Theme.of(context).textTheme.headline6?.copyWith(
+              //         fontStyle: FontStyle.italic,
+              //         color: Colors.grey
+              //     ),
+              //   ),
+              // )
               const SizedBox(height: 20),
 
               /// -- BUTTON
@@ -95,7 +106,7 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.blue[200], side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                 ),
               ),
@@ -114,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: tPrimaryColor, side: BorderSide.none, shape: const StadiumBorder()),
+                      backgroundColor: Colors.blue[200], side: BorderSide.none, shape: const StadiumBorder()),
                   child: const Text(tUpdateProfile, style: TextStyle(color: tDarkColor)),
                 ),
               ),
@@ -142,7 +153,7 @@ class ProfileScreen extends StatelessWidget {
                     debugPrint('Sign Out');
                     Navigator.of(context, rootNavigator: true)
                         .pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context)
-                    { return const MyApp(); }, ), (_) => false,);
+                    { return LoginPage(); }, ), (_) => false,);
                   }
               )
               // ProfileMenuWidget(
@@ -178,16 +189,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  logout(BuildContext context)
-  {
-    final storage = new FlutterSecureStorage();
-    storage.delete(key: 'token');
-    //redirect to login page
-    Navigator.push(
-        context,
-        MaterialPageRoute(builder:
-            (context) => const MyApp()
-    ));
+
 
   }
-}
