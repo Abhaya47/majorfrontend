@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
         },
         icon: const Icon(LineAwesomeIcons.angle_left)),
         title: Text(tProfile, style: Theme.of(context).textTheme.headline4),
-        actions: [IconButton(onPressed: () {}, icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon))],
+        // actions: [IconButton(onPressed: () {}, icon: Icon(isDark ? LineAwesomeIcons.sun : LineAwesomeIcons.moon))],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -82,8 +82,16 @@ class ProfileScreen extends StatelessWidget {
 
               ),
               const SizedBox(height: 10),
-              Text(tProfileHeading, style: Theme.of(context).textTheme.headline4),
-              Text(tProfileSubHeading, style: Theme.of(context).textTheme.headline6?.copyWith(fontStyle: FontStyle.italic, color: Colors.grey)),
+              Text(tProfileHeading, style: Theme.of(context).textTheme.headline4?.copyWith(color: Colors.black, fontWeight: FontWeight.bold)),
+              // Center(
+              //   child: Text(
+              //     tProfileSubHeading,
+              //     style: Theme.of(context).textTheme.headline6?.copyWith(
+              //         fontStyle: FontStyle.italic,
+              //         color: Colors.grey
+              //     ),
+              //   ),
+              // )
               const SizedBox(height: 20),
 
               /// -- BUTTON

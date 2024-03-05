@@ -4,7 +4,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import 'package:http/http.dart';
 import 'package:majorproject/Profile/user_info.dart';
+import 'package:majorproject/model/recommend/dietmodel.dart';
 import 'package:majorproject/model/user_food.dart';
+import 'package:majorproject/model/recommend/dietmodel.dart';
+import 'package:majorproject/model/recommend/exercisemodel.dart';
 
 class api {
 
@@ -126,4 +129,41 @@ class api {
       throw "Unable to retrieve data";
     }
   }
+  Future<List<RecFood>> GetRecommend(String url)
+  async {
+    Response response = await Get(url);
+    print(response);
+    if(response.statusCode == 200)
+    {
+      List<dynamic> body=jsonDecode(response.body);
+
+      List<RecFood> posts= body
+          .map(
+            (dynamic item)=>RecFood.fromJson(item),
+      ).toList();
+      return posts;
+    }
+    else{
+      throw "Unable to retrieve post";
+    }
+  }
+
+  Future<List<ExercisePost>> GetExercise(String url)
+  async {
+    Response response = await Get(url);
+    if(response.statusCode == 200)
+    {
+      List<dynamic> body=jsonDecode(response.body);
+
+      List<ExercisePost> posts= body
+          .map(
+            (dynamic item)=>ExercisePost.fromJson(item),
+      ).toList();
+      return posts;
+    }
+    else{
+      throw "Unable to retrieve post";
+    }
+  }
+
 }

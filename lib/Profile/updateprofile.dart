@@ -243,10 +243,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                           }
                         },
                         style: TextButton.styleFrom(
-                            backgroundColor: tPrimaryColor,
+                            backgroundColor: Colors.blue[200],
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Add Information'),
+                        child: const Text('Add Information', style: TextStyle(color: Colors.black)),
                         // child: const Text(tEditProfile, style: TextStyle(color: tDarkColor)),
                       ),
                     ),

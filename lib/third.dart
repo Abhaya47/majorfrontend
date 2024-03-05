@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:majorproject/Profile/profile.dart';
 import 'package:majorproject/addpage.dart';
 import 'package:majorproject/main.dart';
+import 'package:majorproject/model/recommend/getdiet.dart';
+import 'package:majorproject/model/recommend/getexercise.dart';
 import 'model/BottomNav/log.dart';
 
 class MyTabBar extends StatefulWidget {
@@ -172,13 +174,13 @@ class _Start extends State<Start> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Start',
-                style: TextStyle(fontSize: 15.0),
-              ),
+              // Text('Start',
+              //   style: TextStyle(fontSize: 15.0),
+              // ),
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  // Add your button click logic here
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GetDietRec()));
                   print('Button pressed!');
                 },
                 style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.blue[200]!)),
@@ -187,6 +189,7 @@ class _Start extends State<Start> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => GetExercise()));
                 // Add your button click logic here
                   print('Button pressed!');
                  },

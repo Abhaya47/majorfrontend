@@ -113,6 +113,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return null;
   }
 
+  String? _nameValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your name';
+    }
+    return null;
+  }
+
   String? _confirmPasswordValidator(String? value) {
     if (value != _password) {
       return 'Passwords do not match';
@@ -151,6 +158,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   border: OutlineInputBorder(),
                   labelText: 'Enter name',
                 ),
+                  validator: _nameValidator,
                   onChanged: (value) {
                     _name = value;
                   }
